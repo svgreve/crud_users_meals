@@ -10,6 +10,10 @@ use Mix.Config
 config :crud_meals,
   ecto_repos: [CrudMeals.Repo]
 
+config :crud_meals, CrudMeals.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :crud_meals, CrudMealsWeb.Endpoint,
   url: [host: "localhost"],
