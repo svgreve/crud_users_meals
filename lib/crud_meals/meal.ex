@@ -6,6 +6,8 @@ defmodule CrudMeals.Meal do
 
   @required_params [:description, :date_time, :calories]
 
+  @derive {Jason.Encoder, only: [:id, :description, :date_time, :calories]}
+
   schema "meals" do
     field :description, :string
     field :date_time, :naive_datetime
