@@ -9,7 +9,9 @@ defmodule CrudMeals do
 
   alias CrudMeals.Meals.Create, as: MealsCreate
   alias CrudMeals.Meals.Get, as: MealsGet
+  alias CrudMeals.Meals.Delete, as: MealsDelete
 
   defdelegate create_meal(params), to: MealsCreate, as: :call
   defdelegate get_meal(id), to: MealsGet, as: :by_id
+  defdelegate delete_meal(id), to: MealsDelete, as: :call
 end
