@@ -1,4 +1,4 @@
-defmodule CrudMeals.Meals.Meal do
+defmodule CrudMeals.Meal do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -17,5 +17,6 @@ defmodule CrudMeals.Meals.Meal do
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @required_params)
+    |> validate_required(@required_params)
   end
 end
