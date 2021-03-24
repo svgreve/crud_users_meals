@@ -10,7 +10,7 @@ defmodule CrudMeals.Repo.Migrations.CreateMealsTable do
       timestamps()
     end
 
-    create index(:meals, [:date_time])
+    create unique_index(:meals, [:date_time])
 
   end
 end

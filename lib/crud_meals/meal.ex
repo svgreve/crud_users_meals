@@ -18,5 +18,6 @@ defmodule CrudMeals.Meal do
     %__MODULE__{}
     |> cast(params, @required_params)
     |> validate_required(@required_params)
+    |> unique_constraint([:date_time])
   end
 end
