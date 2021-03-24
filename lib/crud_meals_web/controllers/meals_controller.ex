@@ -18,7 +18,7 @@ defmodule CrudMealsWeb.MealsController do
     with {:ok, %Meal{} = meal} <- CrudMeals.get_meal(id) do
       conn
       |> put_status(:ok)
-      |> render("show.json", neal: meal)
+      |> render("show.json", meal: meal)
     end
   end
 end
