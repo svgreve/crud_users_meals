@@ -8,6 +8,8 @@ defmodule CrudMeals do
   """
 
   alias CrudMeals.Meals.Create, as: MealsCreate
+  alias CrudMeals.Meals.Get, as: MealsGet
 
   defdelegate create_meal(params), to: MealsCreate, as: :call
+  defdelegate get_meal(id), to: MealsGet, as: :by_id
 end
