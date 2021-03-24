@@ -21,4 +21,13 @@ defmodule CrudMealsWeb.MealsController do
       |> render("show.json", meal: meal)
     end
   end
+
+  def delete(conn, %{"id" => id}) do
+    with {:ok, %Meal{}} <- CrudMeals.delete_meal(id) do
+      conn
+      |> put_status(:not_content)
+      # |> render("delete.json", meal: meal)
+      |> text("")
+    end
+  end
 end
