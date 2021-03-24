@@ -11,10 +11,6 @@ defmodule CrudMealsWeb.MealsController do
       conn
       |> put_status(:created)
       |> render("create.json", meal: meal)
-
-    else
-      :error -> {:error, "error"}
     end
   end
-
 end

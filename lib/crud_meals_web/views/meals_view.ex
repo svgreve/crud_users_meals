@@ -8,6 +8,5 @@ defmodule CrudMealsWeb.MealsView do
       message: "Meal created!",
       meal: meal
     }
-
   end
 end
