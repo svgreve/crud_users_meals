@@ -30,4 +30,13 @@ defmodule CrudMealsWeb.MealsController do
       |> text("")
     end
   end
+
+  def update(conn, params) do
+    with {:ok, %Meal{} = meal} <- CrudMeals.update_meal(params) do
+      conn
+      |> put_status(:ok)
+      |> render("show.json", meal: meal)
+    end
+  end
+
 end
