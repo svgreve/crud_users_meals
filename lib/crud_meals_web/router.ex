@@ -1,8 +1,11 @@
 defmodule CrudMealsWeb.Router do
   use CrudMealsWeb, :router
 
+  alias CrudMealsWeb.Plugs.UUIDChecker
+
   pipeline :api do
     plug :accepts, ["json"]
+    plug UUIDChecker
   end
 
   scope "/api", CrudMealsWeb do
