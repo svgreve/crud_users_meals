@@ -1,0 +1,6 @@
+{
+    "skip_files": [
+      "test/support",
+      "lib/crud_meals_web/channels/user_socket.ex"
+    ]
+  }
