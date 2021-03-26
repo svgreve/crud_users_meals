@@ -14,11 +14,11 @@ defmodule CrudMeals.Meals.CreateTest do
 
     test "when there are invalid parameters, returns an error" do
       params = build(:meal_params, %{date_time: "2012-03-32 08:00:00", calories: "aaa"})
-      response = Create.call(params)
-      {:error, %Error{result: changeset}} = response
 
+      response = Create.call(params)
       expected_response = %{calories: ["is invalid"], date_time: ["is invalid"]}
 
+      assert {:error, %Error{status: :bad_request, result: changeset}} = response
       assert errors_on(changeset) == expected_response
     end
   end
