@@ -3,7 +3,7 @@ defmodule CrudMealsWeb.MealsControllerTest do
   import CrudMeals.Factory
 
   describe "create/2" do
-    test "when all parameters are valid, creates the user", %{conn: conn} do
+    test "when all parameters are valid, creates the meal", %{conn: conn} do
       params = %{
         "description" => "Jantar",
         "date_time" => "2021-03-25 08:00:00",
@@ -41,9 +41,22 @@ defmodule CrudMealsWeb.MealsControllerTest do
       expected_response = %{"message" => %{"date_time" => ["is invalid"]}}
 
       assert response == expected_response
-
     end
+  end
 
+  describe "delete/2" do
+    test "when there is a meal with a given id, deletes the meal", %{conn: conn} do
+      id = "bb3c355f-8d10-4419-8550-2588710ba668"
+      insert(:meal)
 
+      # _conn = delete(conn, Routes.meals_path(conn, :delete, id))
+
+      response =
+        conn
+        |> delete(Routes.meals_path(conn, :delete, id))
+        |> response(:no_content)
+
+      assert response == ""
+    end
   end
 end

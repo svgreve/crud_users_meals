@@ -6,7 +6,7 @@ defmodule CrudMeals.Error do
   defstruct @keys
 
   def build(status, result) do
-    % __MODULE__{
+    %__MODULE__{
       status: status,
       result: result
     }
@@ -14,6 +14,4 @@ defmodule CrudMeals.Error do
 
   def build_meal_not_found_error, do: build(:not_found, "Meal not found")
   def build_id_format_error, do: build(:bad_request, "Invalid id format")
-
-
 end

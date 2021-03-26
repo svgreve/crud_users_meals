@@ -17,5 +17,4 @@ defmodule CrudMeals.Meals.Delete do
       meal -> Repo.delete(meal)
     end
   end
-
 end

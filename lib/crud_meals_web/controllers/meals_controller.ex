@@ -6,7 +6,6 @@ defmodule CrudMealsWeb.MealsController do
 
   action_fallback FallbackController
 
-
   def create(conn, params) do
     with {:ok, %Meal{} = meal} <- CrudMeals.create_meal(params) do
       conn
@@ -26,7 +25,7 @@ defmodule CrudMealsWeb.MealsController do
   def delete(conn, %{"id" => id}) do
     with {:ok, %Meal{}} <- CrudMeals.delete_meal(id) do
       conn
-      |> put_status(:not_content)
+      |> put_status(:no_content)
       # |> render("delete.json", meal: meal)
       |> text("")
     end
@@ -39,5 +38,4 @@ defmodule CrudMealsWeb.MealsController do
       |> render("show.json", meal: meal)
     end
   end
-
 end
