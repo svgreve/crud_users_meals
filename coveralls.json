@@ -1,6 +1,13 @@
 {
     "skip_files": [
       "test/support",
-      "lib/crud_meals_web/channels/user_socket.ex"
+      "lib/crud_meals_web/channels/user_socket.ex",
+      "lib/crud_meals_web/endpoint.ex",
+      "lib/crud_meals_web/gettext.ex",
+      "lib/crud_meals_web/views/error_helpers.ex",
+      "lib/crud_meals/repo.ex",
+      "lib/crud_meals/application.ex",
+      "lib/crud_meals_web.ex",
+      "lib/crud_meals_web/router.ex"
     ]
   }
