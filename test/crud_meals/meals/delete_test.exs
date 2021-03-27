@@ -2,7 +2,6 @@ defmodule CrudMeals.Meals.DeleteTest do
   use CrudMeals.DataCase, async: true
   import CrudMeals.Factory
 
-  alias CrudMeals.{Error, Meal, Repo}
   alias CrudMeals.Meals.Delete
 
   describe "call/1" do
