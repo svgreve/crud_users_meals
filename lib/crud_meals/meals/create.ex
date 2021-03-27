@@ -11,8 +11,9 @@ defmodule CrudMeals.Meals.Create do
   defp handle_insert({:ok, meal}), do: {:ok, meal}
 
   defp handle_insert({:error, result}) do
-    IO.inspect(result)
+    # IO.inspect(result)
     # {:error, %{status: :bad_request, result: result}}
     {:error, Error.build(:bad_request, result)}
   end
+
 end

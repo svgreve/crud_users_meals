@@ -17,4 +17,5 @@ defmodule CrudMeals.Meals.Get do
       meal -> {:ok, meal}
     end
   end
+
 end
