@@ -16,4 +16,5 @@ defmodule CrudMeals do
   defdelegate get_meal(id), to: MealsGet, as: :by_id
   defdelegate delete_meal(id), to: MealsDelete, as: :call
   defdelegate update_meal(params), to: MealsUpdate, as: :call
+
 end
