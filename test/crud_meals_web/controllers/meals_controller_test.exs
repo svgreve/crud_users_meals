@@ -58,5 +58,114 @@ defmodule CrudMealsWeb.MealsControllerTest do
 
       assert response == ""
     end
+
+    test "when an invalid id is given to delete a meal, returns an error", %{conn: conn} do
+      insert(:meal)
+      id = "bb3c355f-8d10-xxxx-8550-2588710ba668"
+
+      # _conn = delete(conn, Routes.meals_path(conn, :delete, id))
+
+      response =
+        conn
+        |> delete(Routes.meals_path(conn, :delete, id))
+        |> response(:bad_request)
+
+      assert response == "{\"message\":\"Invalid UUID\"}"
+    end
+
+    test "when there is no meal to be deleted with the given id, returns an error", %{conn: conn} do
+      insert(:meal)
+      id = "0867166d-9606-4eea-9400-e34367e54a2c"
+
+      # _conn = delete(conn, Routes.meals_path(conn, :delete, id))
+
+      response =
+        conn
+        |> delete(Routes.meals_path(conn, :delete, id))
+        |> response(:not_found)
+
+      assert response == "{\"message\":\"Meal not found\"}"
+    end
+  end
+
+  describe "show/2" do
+    test "when the given id corresponds to a meal, returns the record", %{conn: conn} do
+      id = "bb3c355f-8d10-4419-8550-2588710ba668"
+      insert(:meal)
+
+      response =
+        conn
+        |> get(Routes.meals_path(conn, :show, id))
+        |> response(:ok)
+
+      expected_response =
+        "{\"meal\":{\"id\":\"bb3c355f-8d10-4419-8550-2588710ba668\",\"description\":\"Almoço\",\"date_time\":\"2021-03-26T13:00:00\",\"calories\":2300}}"
+
+      assert response == expected_response
+    end
+
+    test "when an invalid id is given to retrieved a meal, returns an error ", %{conn: conn} do
+      insert(:meal)
+      id = "0867166d-9606-4eea-9400-e34367e54a2c"
+
+      response =
+        conn
+        |> get(Routes.meals_path(conn, :show, id))
+        |> response(:not_found)
+
+      assert response == "{\"message\":\"Meal not found\"}"
+    end
+
+    test "when an invalid id is given to get a meal, returns an error", %{conn: conn} do
+      insert(:meal)
+      id = "bb3c355f-8d10-xxxx-8550-2588710ba668"
+
+      # _conn = delete(conn, Routes.meals_path(conn, :delete, id))
+
+      response =
+        conn
+        |> get(Routes.meals_path(conn, :show, id))
+        |> response(:bad_request)
+
+      assert response == "{\"message\":\"Invalid UUID\"}"
+    end
+  end
+
+  describe "update/2" do
+    test "when all parameters are valid, update the meal record", %{conn: conn} do
+      id = "bb3c355f-8d10-4419-8550-2588710ba668"
+      insert(:meal)
+      update_params = %{
+        "id" => id,
+        "calories" => 3500
+      }
+
+      response =
+        conn
+        |> put(Routes.meals_path(conn, :update, id, update_params))
+        |> response(:ok)
+
+      expected_response = "{\"meal\":{\"id\":\"bb3c355f-8d10-4419-8550-2588710ba668\",\"description\":\"Almoço\",\"date_time\":\"2021-03-26T13:00:00\",\"calories\":3500}}"
+      assert response == expected_response
+    end
+
+    test "when any parameters are invalid, returns an error", %{conn: conn} do
+      id = "bb3c355f-8d10-4419-8550-2588710ba668"
+      insert(:meal)
+      update_params = %{
+        "id" => id,
+        "calories" => "aaa"
+      }
+
+      response =
+        conn
+        |> put(Routes.meals_path(conn, :update, id, update_params))
+        |> response(:bad_request)
+
+      expected_response = "{\"message\":{\"calories\":[\"is invalid\"]}}"
+
+       assert response == expected_response
+    end
+
   end
 end

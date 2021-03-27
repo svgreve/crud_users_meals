@@ -16,7 +16,7 @@ defmodule CrudMealsWeb.Plugs.UUIDChecker do
   def call(conn, _options), do: conn
 
   defp render_error(conn) do
-    body = Jason.encode!(%{messaage: "Invalid UUID"})
+    body = Jason.encode!(%{message: "Invalid UUID"})
 
     conn
     |> put_resp_content_type("application/json")

@@ -3,6 +3,8 @@ defmodule CrudMeals.Meals.Update do
   alias Ecto.UUID
 
   def call(%{"id" => id} = params) do
+
+
     case UUID.cast(id) do
       # :error -> {:error, %{status: :bad_request, result: "Invalid id format!"}}
       :error -> {:error, Error.build_id_format_error()}
@@ -22,5 +24,15 @@ defmodule CrudMeals.Meals.Update do
     meal
     |> Meal.changeset(params)
     |> Repo.update()
+    |> handle_update()
   end
+
+  defp handle_update({:ok, meal}), do: {:ok, meal}
+
+  defp handle_update({:error, result}) do
+    # IO.inspect(result)
+    # {:error, %{status: :bad_request, result: result}}
+    {:error, Error.build(:bad_request, result)}
+  end
+
 end
