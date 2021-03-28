@@ -59,3 +59,5 @@ Nesse desafio, você deverá criar testes para a aplicação que foi desenvo
 Caso você já tenha desenvolvido os testes como forma de complementar a aplicação, basta submeter o link do mesmo repositório para esse desafio.
 
 É importante que os testes tenham uma cobertura de 100%
+
+[Link para o arquivo coveralls.html](https://rawgit.com/svgreve/crud_meals/main/cover/excoveralls.html)
