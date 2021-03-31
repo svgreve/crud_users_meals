@@ -2,6 +2,8 @@ defmodule CrudMeals.Meal do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias CrudMeals.Accounts.User
+
   @primary_key {:id, :binary_id, autogenerate: true}
 
   @required_params [:description, :date_time, :calories]
@@ -12,6 +14,7 @@ defmodule CrudMeals.Meal do
     field :description, :string
     field :date_time, :naive_datetime
     field :calories, :integer
+    belongs_to(:user, User)
 
     timestamps()
   end

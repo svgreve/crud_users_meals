@@ -61,3 +61,25 @@ Caso você já tenha desenvolvido os testes como forma de complementar a aplica�
 É importante que os testes tenham uma cobertura de 100%
 
 [Link para o arquivo coveralls.html](https://rawgit.com/svgreve/crud_meals/main/cover/excoveralls.html)
+
+# Sobre o desafio 01 - Capítulo IV
+
+Nesse desafio, você deverá implementar uma nova feature na aplicação feita no desafio 01 do capítulo anterior.
+
+Agora a aplicação deve possuir uma tabela `users` e esses usuários devem possuir uma relação *one-to-many* com a tabela `meals` (já feita no primeiro desafio do capítulo) onde cada usuário tem a sua própria lista de refeições diárias.
+
+O schema de um usuário deverá possuir os seguintes campos:
+
+```elixir
+# User
+{
+	id: id,
+	nome: nome,
+	cpf: cpf,
+	email: email
+}
+```
+
+**Obs:** O Id deve ser gerado automaticamente, pode ser um inteiro ou um UUID, mas não pode se repetir.
+
+Você pode resetar o banco de dados usando o comando `mix ecto.reset`. Assim, os dados registrados durante o desenvolvimento da aplicação para o desafio 01 **CRUD - Refeições diárias** serão apagados e você não terá problemas ao adicionar o relacionamento com a nova tabela.
