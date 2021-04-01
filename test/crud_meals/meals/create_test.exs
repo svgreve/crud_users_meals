@@ -7,6 +7,7 @@ defmodule CrudMeals.Meals.CreateTest do
 
   describe "call/1" do
     test "when all parameters are valid, returns the meal" do
+      insert(:user)
       params = build(:meal_params)
       response = Create.call(params)
       assert {:ok, %Meal{id: _id, calories: 1870}} = response
