@@ -27,6 +27,7 @@ defmodule CrudMeals.Factory do
       description: "Almoço",
       date_time: "2021-03-26 13:00:00",
       calories: 2300,
+      user_id: "7cf8deca-dd36-40f3-8075-0b53ead1f895",
       id: "bb3c355f-8d10-4419-8550-2588710ba668"
     }
   end
