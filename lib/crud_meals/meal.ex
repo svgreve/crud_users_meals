@@ -5,8 +5,9 @@ defmodule CrudMeals.Meal do
   alias CrudMeals.Accounts.User
 
   @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
 
-  @required_params [:description, :date_time, :calories]
+  @required_params [:description, :date_time, :calories, :user_id]
 
   @derive {Jason.Encoder, only: [:id, :description, :date_time, :calories]}
 
@@ -14,7 +15,7 @@ defmodule CrudMeals.Meal do
     field :description, :string
     field :date_time, :naive_datetime
     field :calories, :integer
-    belongs_to(:user, User)
+    belongs_to :user, User
 
     timestamps()
   end
