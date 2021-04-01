@@ -5,14 +5,14 @@ defmodule CrudMealsWeb.UserControllerTest do
   alias CrudMeals.Accounts.User
 
   @create_attrs %{
-    cpf: "some cpf",
-    email: "some email",
-    name: "some name"
+    cpf: "12345678900",
+    email: "nome@banana.com",
+    name: "Fulano de Tal"
   }
   @update_attrs %{
-    cpf: "some updated cpf",
-    email: "some updated email",
-    name: "some updated name"
+    cpf: "12345678911",
+    email: "nomealterado@banana.com",
+    name: "Fulano de Tal Alterado"
   }
   @invalid_attrs %{cpf: nil, email: nil, name: nil}
 
@@ -34,21 +34,21 @@ defmodule CrudMealsWeb.UserControllerTest do
 
   describe "create user" do
     test "renders user when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.user_path(conn, :create), user: @create_attrs)
+      conn = post(conn, Routes.user_path(conn, :create), @create_attrs)
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
       conn = get(conn, Routes.user_path(conn, :show, id))
 
       assert %{
-               "id" => id,
-               "cpf" => "some cpf",
-               "email" => "some email",
-               "name" => "some name"
+               "id" => _id,
+               "cpf" => "12345678900",
+               "email" => "nome@banana.com",
+               "name" => "Fulano de Tal"
              } = json_response(conn, 200)["data"]
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.user_path(conn, :create), user: @invalid_attrs)
+      conn = post(conn, Routes.user_path(conn, :create), @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -57,21 +57,21 @@ defmodule CrudMealsWeb.UserControllerTest do
     setup [:create_user]
 
     test "renders user when data is valid", %{conn: conn, user: %User{id: id} = user} do
-      conn = put(conn, Routes.user_path(conn, :update, user), user: @update_attrs)
+      conn = put(conn, Routes.user_path(conn, :update, user), @update_attrs)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
       conn = get(conn, Routes.user_path(conn, :show, id))
 
       assert %{
-               "id" => id,
-               "cpf" => "some updated cpf",
-               "email" => "some updated email",
-               "name" => "some updated name"
+               "id" => _id,
+               "cpf" => "12345678911",
+               "email" => "nomealterado@banana.com",
+               "name" => "Fulano de Tal Alterado"
              } = json_response(conn, 200)["data"]
     end
 
     test "renders errors when data is invalid", %{conn: conn, user: user} do
-      conn = put(conn, Routes.user_path(conn, :update, user), user: @invalid_attrs)
+      conn = put(conn, Routes.user_path(conn, :update, user), @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end

@@ -6,6 +6,7 @@ defmodule CrudMeals.Meals.UpdateTest do
 
   describe "call/1" do
     test "when the meal is found and parameters are all valid, updates it." do
+      insert(:user)
       insert(:meal)
       id = "bb3c355f-8d10-4419-8550-2588710ba668"
       update_params = %{
@@ -15,6 +16,7 @@ defmodule CrudMeals.Meals.UpdateTest do
       assert {:ok, _result} = Update.call(update_params)
     end
     test "when the meal is found and any parameter is invalid, returns an error." do
+      insert(:user)
       insert(:meal)
       id = "bb3c355f-8d10-4419-8550-2588710ba668"
       update_params = %{

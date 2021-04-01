@@ -6,8 +6,12 @@ defmodule CrudMeals.AccountsTest do
   describe "users" do
     alias CrudMeals.Accounts.User
 
-    @valid_attrs %{cpf: "some cpf", email: "some email", name: "some name"}
-    @update_attrs %{cpf: "some updated cpf", email: "some updated email", name: "some updated name"}
+    @valid_attrs %{cpf: "12345678900", email: "nome@banana.com", name: "Fulano de Tal", meals: []}
+    @update_attrs %{
+      cpf: "12345678911",
+      email: "novoemail@banana.com",
+      name: "Fulano Alterado de Tal"
+    }
     @invalid_attrs %{cpf: nil, email: nil, name: nil}
 
     def user_fixture(attrs \\ %{}) do
@@ -21,7 +25,11 @@ defmodule CrudMeals.AccountsTest do
 
     test "list_users/0 returns all users" do
       user = user_fixture()
-      assert Accounts.list_users() == [user]
+
+      [head | _tail] = Accounts.list_users()
+      IO.inspect head
+      IO.inspect user
+      assert head.id == user.id
     end
 
     test "get_user!/1 returns the user with given id" do
@@ -31,9 +39,9 @@ defmodule CrudMeals.AccountsTest do
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
-      assert user.cpf == "some cpf"
-      assert user.email == "some email"
-      assert user.name == "some name"
+      assert user.cpf == "12345678900"
+      assert user.email == "nome@banana.com"
+      assert user.name == "Fulano de Tal"
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -43,9 +51,9 @@ defmodule CrudMeals.AccountsTest do
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
       assert {:ok, %User{} = user} = Accounts.update_user(user, @update_attrs)
-      assert user.cpf == "some updated cpf"
-      assert user.email == "some updated email"
-      assert user.name == "some updated name"
+      assert user.cpf == "12345678911"
+      assert user.email == "novoemail@banana.com"
+      assert user.name == "Fulano Alterado de Tal"
     end
 
     test "update_user/2 with invalid data returns error changeset" do
