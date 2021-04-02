@@ -1,6 +1,7 @@
 defmodule CrudMealsWeb.MealsController do
   use CrudMealsWeb, :controller
 
+
   alias CrudMeals.Meal
   alias CrudMealsWeb.FallbackController
 

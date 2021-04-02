@@ -1,7 +1,7 @@
 defmodule CrudMealsWeb.MealsView do
   use CrudMealsWeb, :view
 
-  alias CrudMeals.Meal
+  alias CrudMeals.{Meal, Repo}
 
   def render("create.json", %{meal: %Meal{} = meal}) do
     %{
@@ -10,5 +10,6 @@ defmodule CrudMealsWeb.MealsView do
     }
   end
 
-  def render("show.json", %{meal: %Meal{} = meal}), do: %{meal: meal}
+  def render("show.json", %{meal: %Meal{} = meal}), do:  %{meal: meal}
+
 end
