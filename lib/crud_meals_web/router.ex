@@ -12,10 +12,10 @@ defmodule CrudMealsWeb.Router do
     pipe_through :api
 
     resources "/users", UserController, only: [:create, :show, :update, :delete,  :index] do
-      resources "/meals", MealsController, only: [:create,  :index]
+      resources "/meals", MealController, only: [:create,  :index]
     end
 
-    resources "/meals", MealsController, only: [:show, :update, :delete]
+    resources "/meals", MealController, only: [:show, :update, :delete]
 
   end
 

@@ -1,4 +1,4 @@
-defmodule CrudMealsWeb.MealsController do
+defmodule CrudMealsWeb.MealController do
   use CrudMealsWeb, :controller
 
 
@@ -13,6 +13,12 @@ defmodule CrudMealsWeb.MealsController do
       |> put_status(:created)
       |> render("create.json", meal: meal)
     end
+  end
+
+  def index(conn, %{"user_id" => user_id}) do
+    meals = CrudMeals.index_user_meals(user_id)
+    IO.inspect meals
+    render(conn, "index.json", meals: meals)
   end
 
   def show(conn, %{"id" => id}) do

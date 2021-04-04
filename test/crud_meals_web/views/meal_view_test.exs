@@ -1,15 +1,15 @@
-defmodule CrudMealsWeb.MealsViewTest do
+defmodule CrudMealsWeb.MealViewTest do
   use CrudMealsWeb.ConnCase, async: true
 
   import Phoenix.View
   import CrudMeals.Factory
 
-  alias CrudMealsWeb.MealsView
+  alias CrudMealsWeb.MealView
 
   test "renders create.json" do
     meal = build(:meal)
 
-    response = render(MealsView, "create.json", meal: meal)
+    response = render(MealView, "create.json", meal: meal)
 
     expected_response = %{
       meal: %CrudMeals.Meal{
@@ -18,7 +18,8 @@ defmodule CrudMealsWeb.MealsViewTest do
         description: "Almoço",
         id: "bb3c355f-8d10-4419-8550-2588710ba668",
         inserted_at: nil,
-        updated_at: nil
+        updated_at: nil,
+        user_id: "7cf8deca-dd36-40f3-8075-0b53ead1f895"
       },
       message: "Meal created!"
     }
@@ -29,7 +30,7 @@ defmodule CrudMealsWeb.MealsViewTest do
   test "renders show.json" do
     meal = build(:meal)
 
-    response = render(MealsView, "show.json", meal: meal)
+    response = render(MealView, "show.json", meal: meal)
 
     expected_response = %{
       meal: %CrudMeals.Meal{
@@ -38,7 +39,8 @@ defmodule CrudMealsWeb.MealsViewTest do
         description: "Almoço",
         id: "bb3c355f-8d10-4419-8550-2588710ba668",
         inserted_at: nil,
-        updated_at: nil
+        updated_at: nil,
+        user_id: "7cf8deca-dd36-40f3-8075-0b53ead1f895"
       }
     }
 
