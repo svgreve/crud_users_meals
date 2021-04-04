@@ -36,7 +36,7 @@ defmodule CrudMealsWeb.MealControllerTest do
       params = %{
         "description" => "Jantar",
         "date_time" => "2021-03-32 08:00:00",
-        "calories" => 1870,
+        "calories" => 1870
       }
 
       response =
@@ -52,7 +52,6 @@ defmodule CrudMealsWeb.MealControllerTest do
 
   describe "delete/2" do
     test "when there is a meal with a given id, deletes the meal", %{conn: conn} do
-
       insert(:user)
       meal = insert(:meal)
       id = meal.id
@@ -174,23 +173,6 @@ defmodule CrudMealsWeb.MealControllerTest do
       expected_response = "{\"message\":{\"calories\":[\"is invalid\"]}}"
 
       assert response == expected_response
-    end
-  end
-
-  describe "index/2" do
-    test "when the id is valid returns the user meals", %{conn: conn} do
-      user = insert(:user)
-      user_id = user.id
-
-      insert(:meal)
-
-      response =
-        conn
-        |> get(Routes.user_meal_path(conn, :index, user_id))
-
-      IO.inspect response
-
-
     end
   end
 

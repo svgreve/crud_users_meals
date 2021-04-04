@@ -17,8 +17,7 @@ defmodule CrudMealsWeb.MealController do
 
   def index(conn, %{"user_id" => user_id}) do
     meals = CrudMeals.index_user_meals(user_id)
-    IO.inspect meals
-    render(conn, "index.json", meals: meals)
+    render(conn, "meals.json", meals: meals)
   end
 
   def show(conn, %{"id" => id}) do
