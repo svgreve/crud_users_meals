@@ -12,6 +12,13 @@ defmodule CrudMeals do
   alias CrudMeals.Meals.Delete, as: MealsDelete
   alias CrudMeals.Meals.Update, as: MealsUpdate
   alias CrudMeals.Meals.Index, as: MealsIndex
+  alias CrudMeals.Accounts
+
+  defdelegate create_user(params), to: Accounts, as: :create_user
+  defdelegate update_user(params), to: Accounts, as: :update_user
+  defdelegate delete_user(params), to: Accounts, as: :delete_user
+  defdelegate get_user(id), to: Accounts, as: :get_user!
+  defdelegate all_users(), to: Accounts, as: :list_users
 
   defdelegate create_meal(params), to: MealsCreate, as: :call
   defdelegate get_meal(id), to: MealsGet, as: :by_id

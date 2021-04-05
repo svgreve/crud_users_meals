@@ -79,6 +79,14 @@ defmodule CrudMeals.Accounts do
     |> Repo.update()
   end
 
+  def update_user(%{id: id} = params) do
+    case Repo.get(User, id) do
+      nil -> {:error, %{status: :not_found, result: "User not found!"}}
+      # nil -> {:error, Error.build_meal_not_found_error()}
+      user -> update_user(user, params)
+    end
+  end
+
   @doc """
   Deletes a user.
 
@@ -94,6 +102,8 @@ defmodule CrudMeals.Accounts do
   def delete_user(%User{} = user) do
     Repo.delete(user)
   end
+
+
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking user changes.
