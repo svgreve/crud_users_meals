@@ -1,4 +1,4 @@
-# CrudMeals
+# CrudUsersMeals
 
 To start your Phoenix server:
 
